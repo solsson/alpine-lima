@@ -32,15 +32,20 @@ jobs:
         make mkimage ARCH=x86_64
         make mkimage ARCH=aarch64
 
-    - name: Build the std edition
-      run: |
-        make iso EDITION=std ARCH=x86_64
-        make iso EDITION=std ARCH=aarch64
+    # - name: Build the std edition
+    #   run: |
+    #     make iso EDITION=std ARCH=x86_64
+    #     make iso EDITION=std ARCH=aarch64
 
-    - name: Build the rd edition
+    # - name: Build the rd edition
+    #   run: |
+    #     make iso EDITION=rd ARCH=x86_64
+    #     make iso EDITION=rd ARCH=aarch64
+
+    - name: Build the k3s edition
       run: |
-        make iso EDITION=rd ARCH=x86_64
-        make iso EDITION=rd ARCH=aarch64
+        make iso EDITION=k3s ARCH=x86_64
+        make iso EDITION=k3s ARCH=aarch64
 
     - name: Create release
       if: github.event_name != 'pull_request'
@@ -51,12 +56,8 @@ jobs:
         tag="${GITHUB_REF##*/}"
 
         hub release create
-        -a iso/alpine-lima-std-${ALPINE_VERSION}-aarch64.iso
-        -a iso/alpine-lima-std-${ALPINE_VERSION}-aarch64.iso.sha512sum
-        -a iso/alpine-lima-std-${ALPINE_VERSION}-x86_64.iso
-        -a iso/alpine-lima-std-${ALPINE_VERSION}-x86_64.iso.sha512sum
-        -a iso/alpine-lima-rd-${ALPINE_VERSION}-aarch64.iso
-        -a iso/alpine-lima-rd-${ALPINE_VERSION}-aarch64.iso.sha512sum
-        -a iso/alpine-lima-rd-${ALPINE_VERSION}-x86_64.iso
-        -a iso/alpine-lima-rd-${ALPINE_VERSION}-x86_64.iso.sha512sum
+        -a iso/alpine-lima-k3s-${ALPINE_VERSION}-aarch64.iso
+        -a iso/alpine-lima-k3s-${ALPINE_VERSION}-aarch64.iso.sha512sum
+        -a iso/alpine-lima-k3s-${ALPINE_VERSION}-x86_64.iso
+        -a iso/alpine-lima-k3s-${ALPINE_VERSION}-x86_64.iso.sha512sum
         -m "${tag}" --draft "${tag}"
