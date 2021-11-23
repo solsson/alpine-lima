@@ -42,10 +42,10 @@ jobs:
     #     make iso EDITION=rd ARCH=x86_64
     #     make iso EDITION=rd ARCH=aarch64
 
-    - name: Build the ystack edition
+    - name: Build the y edition
       run: |
-        make iso EDITION=ystack ARCH=x86_64
-        make iso EDITION=ystack ARCH=aarch64
+        make iso EDITION=y ARCH=x86_64
+        make iso EDITION=y ARCH=aarch64
 
     - name: Create release
       if: github.event_name != 'pull_request'
@@ -56,17 +56,17 @@ jobs:
         tag="${GITHUB_REF##*/}"
 
         hub release create
-        -a iso/alpine-lima-ystack-${ALPINE_VERSION}-aarch64.iso
-        -a iso/alpine-lima-ystack-${ALPINE_VERSION}-aarch64.iso.sha512sum
-        -a iso/alpine-lima-ystack-${ALPINE_VERSION}-x86_64.iso
-        -a iso/alpine-lima-ystack-${ALPINE_VERSION}-x86_64.iso.sha512sum
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum
         -m "${tag}
 
         ```
 
-        $(cat iso/alpine-lima-ystack-${ALPINE_VERSION}-aarch64.iso.sha512sum)
+        $(cat iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum)
 
-        $(cat iso/alpine-lima-ystack-${ALPINE_VERSION}-x86_64.iso.sha512sum)
+        $(cat iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum)
 
         ```
 

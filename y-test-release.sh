@@ -2,8 +2,8 @@
 
 t=$(date "+%Y%m%dt%H%M")
 
+git --no-pager show
 git status
-git show
 
 read -p "Push tag $t? [y/n] " ok && [ "$ok" = "y" ] || exit 1
 
