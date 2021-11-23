@@ -52,19 +52,22 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Note "folded" style; requires a blank line to insert actual newline
-      run: |
+      run: >
         tag="${GITHUB_REF##*/}"
 
-        hub release create \
-        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso \
-        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum \
-        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso \
-        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum \
+        hub release create
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso
+        -a iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum
         -m "${tag}
 
         ```
-        sha512:$(cat iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum)
-        sha512:$(cat iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum)
+
+        $(cat iso/alpine-lima-y-${ALPINE_VERSION}-aarch64.iso.sha512sum)
+
+        $(cat iso/alpine-lima-y-${ALPINE_VERSION}-x86_64.iso.sha512sum)
+
         ```
 
         " "${tag}"
