@@ -1,7 +1,7 @@
 profile_lima() {
 	profile_standard
 	profile_abbrev="lima"
-	title="Linux on Mac"
+	title="Linux Virtual Machines"
 	desc="Similar to standard.
 		Slimmed down kernel.
 		Optimized for virtual systems.
@@ -23,6 +23,7 @@ profile_lima() {
         if [ "${LIMA_INSTALL_DOCKER}" == "true" ]; then
             apks="$apks libseccomp runc containerd tini-static device-mapper-libs"
             apks="$apks docker-engine docker-openrc docker-cli docker"
+            apks="$apks socat"
         fi
         if [ "${LIMA_INSTALL_LIMA_INIT}" == "true" ]; then
             apks="$apks e2fsprogs lsblk sfdisk shadow sudo udev"
