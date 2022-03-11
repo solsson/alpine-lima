@@ -20,10 +20,13 @@ profile_lima() {
         if [ "${LIMA_INSTALL_CLOUD_INIT}" == "true" ]; then
             apks="$apks cloud-init"
         fi
+        if [ "${LIMA_INSTALL_CNI_PLUGINS}" == "true" ]; then
+            apks="$apks cni-plugins"
+        fi
         if [ "${LIMA_INSTALL_DOCKER}" == "true" ]; then
             apks="$apks libseccomp runc containerd tini-static device-mapper-libs"
             apks="$apks docker-engine docker-openrc docker-cli docker"
-            apks="$apks socat"
+            apks="$apks socat xz"
         fi
         if [ "${LIMA_INSTALL_LIMA_INIT}" == "true" ]; then
             apks="$apks e2fsprogs lsblk sfdisk shadow sudo udev"
